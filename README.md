@@ -20,4 +20,4 @@ To test if this file is correctly converted from openPMD, one needs to compile a
 
 To compile `gfortran rstrt.f`. Then run the executable `./a.out`. The file named `pospic{iteration}.dat` will be generated. The following is a plot from this file.
 
-![alt text](particles89600.png)
+![alt text](particles189600.png)
