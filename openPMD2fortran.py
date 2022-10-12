@@ -16,6 +16,7 @@ from turtle import back
 from openpmd_viewer import OpenPMDTimeSeries
 import numpy as np
 from scipy.io import FortranFile
+import matplotlib.pyplot as plt
 
 def openPMD2fortran(run_directory,species,iteration,select=None,backend='h5py'):
     """
@@ -58,7 +59,32 @@ def openPMD2fortran(run_directory,species,iteration,select=None,backend='h5py'):
     f.write_record(y)
 
 if __name__ == "__main__":
+    iteration=189600
     select = {'uy' : [148,150]}
-    openPMD2fortran('/media/ong/WORKDIR21/betatron0047_1/simOutput/h5/particles/',species='e_highGamma', iteration=189600, select=select)
+    openPMD2fortran('/media/ong/WORKDIR21/betatron0047_1/simOutput/h5/particles/',species='e_highGamma', iteration=iteration, select=select)
+
+    # The openPMD file is converted to fortran binary restrt{iteration}.dat. Fortran read this binary file then write the file pospic{iteration}.dat. The lines below plot this file.
+
+    #x, y = np.loadtxt(rf"pospic{iteration}.dat",unpack=True,usecols=[0,1],dtype=np.float)
+
+    #fig, ax = plt.subplots()
+
+    #ax.plot(y*1e6, x*1e6, '.', color="black")
+    
+    #ax.set_ylabel(r"$x \,(\mathrm{\mu m})$")
+    #ax.set_xlabel(r"$y \,(\mathrm{\mu m})$")
+
+    # add watermark
+    #ax.text(0.5, 0.5, 'LGED preliminary', transform=ax.transAxes,
+    #    fontsize=20, color='gray', alpha=0.5,
+    #    ha='center', va='center', rotation='30')
+        
+    #ax.set_ylim(ymin=0, ymax=78)
+    #ax.set_xlim(xmin=5940,xmax=6005)
+    #fig = plt.gcf()
+    #fig.set_size_inches(3.4, 3.4/1.618)
+    #plt.tight_layout()
+    #fig.savefig(rf"particles{iteration}.png", dpi=300)
+
 
 
